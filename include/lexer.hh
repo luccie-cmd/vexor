@@ -10,6 +10,7 @@ class Lexer{
                 std::exit(1);
             }
             _current_c = _content.at(0);
+            _index = 0;
         }
         Token next_token();
     private:
