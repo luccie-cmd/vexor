@@ -9,6 +9,9 @@
 int main(){
     std::string contents;
     std::ifstream t("./test/main.apx");
+    if(!t.is_open()){
+        fmt::print("No file or directory named `{}`\n", "./test/main.apx");
+    }
     std::stringstream buffer;
     buffer << t.rdbuf();
     contents = buffer.str();

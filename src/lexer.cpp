@@ -4,7 +4,7 @@
 apx::Token apx::Lexer::next_token(){
     skip_whitespace();
     if(_index >= _content.size()-1){
-        return Token(TokenType::TT_EOF, 0);
+        return Token(TokenType::TT_EOF, "\0");
     }
 
     if(isalnum(_current_c)){

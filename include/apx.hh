@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <cstdint>
 #include <fmt/core.h>
 
 namespace apx{
@@ -18,7 +19,7 @@ class Token{
     public:
         Token(TokenType tt, std::string d) :_data(d), _type(tt){}
         void print(){
-            // fmt::print("`{}`\n", data);
+            fmt::print("`{}`\n", _data);
         }
     private:
         std::string _data;
