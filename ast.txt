@@ -1,0 +1,11 @@
+AST
+|- VAR DECL
+    |- NAME: x
+|- VAR ASSIGN
+    |- NAME: x
+    |- VALUE: 69420
+
+_start:
+    mov [x], 69420
+
+x: dq 0
