@@ -3,6 +3,10 @@
 #include <algorithm>
 #include <cctype>
 
+static std::vector<std::string> keywords = {
+    "var",
+};
+
 static std::vector<apx::Token> single_tokens = {
     apx::Token(apx::TokenType::EQUAL, "="),
     apx::Token(apx::TokenType::SEMICOLON, ";"),
@@ -39,6 +43,8 @@ apx::Token apx::Lexer::next_token(){
         }
         if(isdigit(data.at(0))){
             return Token(TokenType::NUMBER, data);
+        } else if(std::find(keywords.begin(), keywords.end(), data) != keywords.end()){
+            return Token(TokenType::KEYWORD, data);
         }
         return Token(TokenType::ID, data);
     }

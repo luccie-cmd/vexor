@@ -3,7 +3,7 @@
 apx::Ast apx::Parser::nodes(){
     apx::Ast ret_ast(apx::AstType::ROOT);
     apx::Token tok = _lexer.next_token();
-    while(tok.get_type() == apx::TokenType::ID){
+    while(tok.get_type() == apx::TokenType::KEYWORD){
         if(tok.get_data() == "var"){
             apx::Token name = _lexer.expect(apx::TokenType::ID);
             apx::Ast ast(apx::AstType::VAR_DECL);
