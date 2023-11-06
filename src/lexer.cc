@@ -7,12 +7,12 @@ static std::vector<std::string> keywords = {
     "var",
 };
 
-static std::vector<apx::Token> single_tokens = {
-    apx::Token(apx::TokenType::EQUAL, "="),
-    apx::Token(apx::TokenType::SEMICOLON, ";"),
+static std::vector<vex::Token> single_tokens = {
+    vex::Token(vex::TokenType::EQUAL, "="),
+    vex::Token(vex::TokenType::SEMICOLON, ";"),
 };
 
-apx::Token apx::Lexer::next_token(){
+vex::Token vex::Lexer::next_token(){
     skip_whitespace();
     if(_index >= _content.size()){
         return Token(TokenType::TT_EOF, "\0");
@@ -55,8 +55,8 @@ apx::Token apx::Lexer::next_token(){
     std::exit(1);
 }
 
-apx::Token apx::Lexer::expect(apx::TokenType tt){
-    apx::Token ret = next_token();
+vex::Token vex::Lexer::expect(vex::TokenType tt){
+    vex::Token ret = next_token();
     if(ret.get_type() != tt){
         fmt::print("Expected token type `{}` but got `{}` with value `{}`\n", ret.tt_as_str(tt), ret.tt_as_str(ret.get_type()), ret.get_data());
         std::exit(1);
@@ -64,14 +64,14 @@ apx::Token apx::Lexer::expect(apx::TokenType tt){
     return ret;
 }
 
-void apx::Lexer::advance(){
+void vex::Lexer::advance(){
     if(_index < _content.size()-1){
         _index++;
         _current_c = _content.at(_index);
     }
 }
 
-void apx::Lexer::skip_whitespace(){
+void vex::Lexer::skip_whitespace(){
     while((isblank(_current_c) || _current_c == '\n') && _index < _content.size()-1){
         advance();
     }

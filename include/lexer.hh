@@ -1,7 +1,7 @@
 #pragma once
-#include "apx.hh"
+#include "vex.hh"
 
-namespace apx{
+namespace vex{
 
 class Lexer{
     public:

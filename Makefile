@@ -4,4 +4,4 @@ LIBS=-lfmt
 
 all:
 	mkdir -p build
-	$(CC) $(CFLAGS) src/*.cc -o ./build/apx $(LIBS)
+	$(CC) $(CFLAGS) src/*.cc -o ./build/vex $(LIBS)

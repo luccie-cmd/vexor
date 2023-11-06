@@ -1,8 +1,8 @@
 #pragma once
-#include "apx.hh"
+#include "vex.hh"
 #include <vector>
 
-namespace apx{
+namespace vex{
 
 enum struct AstType{
     ROOT,

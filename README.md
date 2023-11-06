@@ -1,4 +1,4 @@
-# APEX
+# VEXOR
 
 ## CURRENTLY IN PROGRESS CHANGES CAN HAPPEN AT ANY TIME
 
@@ -6,5 +6,5 @@
 
 ```
     make -B
-    ./build/apx
+    ./build/vex
 ```

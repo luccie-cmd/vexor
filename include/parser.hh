@@ -1,9 +1,9 @@
 #pragma once
-#include "apx.hh"
+#include "vex.hh"
 #include "lexer.hh"
 #include "ast.hh"
 
-namespace apx{
+namespace vex{
 
 class Parser{
     public:

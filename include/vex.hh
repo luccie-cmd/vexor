@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <fmt/core.h>
 
-namespace apx{
+namespace vex{
 
 using usz = uint64_t;
 
@@ -24,11 +24,12 @@ class Token{
         }
         std::string tt_as_str(TokenType tt){
             switch(tt){
-                case apx::TokenType::ID:        return "ID";      break;
-                case apx::TokenType::EQUAL:     return "=";       break;
-                case apx::TokenType::NUMBER:    return "NUMBER";  break;
-                case apx::TokenType::SEMICOLON: return ";";       break;
-                case apx::TokenType::TT_EOF:    return "EOF";     break;
+                case vex::TokenType::KEYWORD:   return "KEYWORD"; break;
+                case vex::TokenType::ID:        return "ID";      break;
+                case vex::TokenType::EQUAL:     return "=";       break;
+                case vex::TokenType::NUMBER:    return "NUMBER";  break;
+                case vex::TokenType::SEMICOLON: return ";";       break;
+                case vex::TokenType::TT_EOF:    return "EOF";     break;
             }
             return "";
         }
@@ -36,7 +37,7 @@ class Token{
         std::string get_data(){ return _data; }
     private:
         std::string _data;
-        apx::TokenType _type;
+        vex::TokenType _type;
 };
 
 };
