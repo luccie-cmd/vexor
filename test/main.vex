@@ -1,1 +1,3 @@
-var x = 69420;
+var x;
+x = 10;
+var y;
