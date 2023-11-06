@@ -2,6 +2,7 @@
 #include "apx.hh"
 
 namespace apx{
+
 class Lexer{
     public:
         Lexer(std::string content) :_content(content){
@@ -13,6 +14,7 @@ class Lexer{
             _index = 0;
         }
         Token next_token();
+        Token expect(TokenType tt);
     private:
         void advance();
         void skip_whitespace();
@@ -20,4 +22,5 @@ class Lexer{
         std::string _content;
         char _current_c;
 };
+
 };

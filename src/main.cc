@@ -5,6 +5,7 @@
 #include <fmt/core.h>
 #include "apx.hh"
 #include "lexer.hh"
+#include "parser.hh"
 
 int main(){
     std::string contents;
@@ -17,7 +18,7 @@ int main(){
     contents = buffer.str();
 
     apx::Lexer lexer(contents);
-    apx::Token tok = lexer.next_token();
-    tok.print();
+    apx::Parser parser(lexer);
+    parser.nodes().print();
     return 0;
 }
