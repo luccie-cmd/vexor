@@ -15,6 +15,7 @@ using namespace std::literals;
 
 using options = clopts<
     flag<"--print-ast", "Print the AST">,
+    flag<"--print-ir", "Print the IR">,
     positional<"file", "The file whoms contents should be read and compiled", file<>, /*required=*/true>,
     help<>
 >;
@@ -23,6 +24,7 @@ int main(int argc, char** argv){
     auto opts = options::parse(argc, argv);
     auto file_contents = opts.get<"file">()->contents;
     bool print_ast = opts.get<"--print-ast">();
+    bool print_ir = opts.get<"--print-ir">();
     vex::Lexer lexer(file_contents);
     vex::Parser parser(lexer);
     vex::Ast nodes = parser.nodes();
@@ -33,11 +35,13 @@ int main(int argc, char** argv){
         fmt::print("{}\n", ret);
         std::exit(1);
     }
+    vex::IRGen irgen(nodes);
+    vex::IR ir = irgen.generate_ir();
     if(print_ast){
         nodes.print();
     }
-    vex::IRGen irgen(nodes);
-    vex::IR ir = irgen.generate_ir();
-    ir.print();
+    if(print_ir){
+        ir.print();
+    }
     return 0;
 }
