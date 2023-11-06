@@ -16,8 +16,18 @@ vex::Ast vex::Parser::nodes(){
                 assign.add_operand(_lexer.next_token());
                 ret_ast.add_child(assign);
             }
+            _lexer.expect(vex::TokenType::SEMICOLON);
         }
-        _lexer.expect(vex::TokenType::SEMICOLON);
+        tok = _lexer.next_token();
+    }
+    while(tok.get_type() == vex::TokenType::ID){
+        Token next = _lexer.next_token();
+        if(next.get_type() == vex::TokenType::EQUAL){
+            vex::Ast assign(vex::AstType::VAR_ASSIGN);
+            assign.add_operand(tok);
+            assign.add_operand(_lexer.next_token());
+            ret_ast.add_child(assign);
+        }
         tok = _lexer.next_token();
     }
     _lexer.expect(vex::TokenType::SEMICOLON);

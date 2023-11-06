@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <cctype>
+#define VEXOR_COMMENT_SYMBOL '#'
 
 static std::vector<std::string> keywords = {
     "var",
@@ -17,18 +18,14 @@ vex::Token vex::Lexer::next_token(){
     if(_index >= _content.size()){
         return Token(TokenType::TT_EOF, "\0");
     }
-    skip_whitespace();
 
-    skip_whitespace();
     for(Token t : single_tokens){
         if(*t.get_data().c_str() == _current_c){
             advance();
             return t;
         }
     }
-    skip_whitespace();
 
-    skip_whitespace();
     if(isalnum(_current_c)){
         std::string data;
         data.push_back(_current_c);
@@ -48,7 +45,6 @@ vex::Token vex::Lexer::next_token(){
         }
         return Token(TokenType::ID, data);
     }
-    skip_whitespace();
 
     fmt::print("Invalid character found starting with: `{}`\n", _current_c);
     fmt::print("This should return an invalid token eventually\n");

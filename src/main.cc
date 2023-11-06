@@ -6,6 +6,7 @@
 #include "vex.hh"
 #include "lexer.hh"
 #include "parser.hh"
+#include "sema.hh"
 
 int main(){
     std::string contents;
@@ -19,6 +20,14 @@ int main(){
 
     vex::Lexer lexer(contents);
     vex::Parser parser(lexer);
-    parser.nodes().print();
+    vex::Ast nodes = parser.nodes();
+    vex::Sema sema(nodes);
+    std::string ret = sema.check_ast();
+    if(ret != "none"){
+        fmt::print("Encountered an error\n");
+        fmt::print("{}\n", ret);
+        std::exit(1);
+    }
+    nodes.print();
     return 0;
 }

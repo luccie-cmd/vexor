@@ -21,6 +21,9 @@ class Ast{
         void add_operand(Token tok){
             _operands.push_back(tok);
         }
+        std::vector<Ast> children() { return _children; }
+        std::vector<Token> operands() { return _operands; }
+        AstType get_type() { return _type; }
         void print(){
             switch(_type){ 
                 case AstType::ROOT: {
