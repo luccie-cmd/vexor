@@ -15,7 +15,16 @@ static std::vector<vex::Token> single_tokens = {
 
 vex::Token vex::Lexer::next_token(){
     skip_whitespace();
-    if(_index >= _content.size()){
+
+    while(_current_c == VEXOR_COMMENT_SYMBOL && _index < _content.size()-1){
+        while(_current_c != '\n' && _index < _content.size()-1){
+            advance();
+        }
+        advance();
+    }
+    skip_whitespace();
+    
+    if(_index >= _content.size() || _current_c == '\0'){
         return Token(TokenType::TT_EOF, "\0");
     }
 
@@ -61,9 +70,13 @@ vex::Token vex::Lexer::expect(vex::TokenType tt){
 }
 
 void vex::Lexer::advance(){
-    if(_index < _content.size()-1){
+    if (_index < _content.size()-1) {
         _index++;
-        _current_c = _content.at(_index);
+        if (_index < _content.size()) {
+            _current_c = _content.at(_index);
+        }
+    } else {
+        _current_c = '\0';
     }
 }
 

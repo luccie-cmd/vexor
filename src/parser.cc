@@ -28,8 +28,8 @@ vex::Ast vex::Parser::nodes(){
             assign.add_operand(_lexer.next_token());
             ret_ast.add_child(assign);
         }
+        _lexer.expect(vex::TokenType::SEMICOLON);
         tok = _lexer.next_token();
     }
-    _lexer.expect(vex::TokenType::SEMICOLON);
     return ret_ast;
 }
