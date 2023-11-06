@@ -7,18 +7,22 @@
 #include "lexer.hh"
 #include "parser.hh"
 #include "sema.hh"
+#include "deps/clopts.hh"
 
-int main(){
-    std::string contents;
-    std::ifstream t("./test/main.vex");
-    if(!t.is_open()){
-        fmt::print("No file or directory named `{}`\n", "./test/main.vex");
-    }
-    std::stringstream buffer;
-    buffer << t.rdbuf();
-    contents = buffer.str();
+using namespace command_line_options;
+using namespace std::literals;
 
-    vex::Lexer lexer(contents);
+using options = clopts<
+    flag<"--print-ast", "Print the AST">,
+    positional<"file", "The file whoms contents should be read and compiled", file<>, /*required=*/true>,
+    help<>
+>;
+
+int main(int argc, char** argv){
+    auto opts = options::parse(argc, argv);
+    auto file_contents = opts.get<"file">()->contents;
+    bool print_ast = opts.get<"--print-ast">();
+    vex::Lexer lexer(file_contents);
     vex::Parser parser(lexer);
     vex::Ast nodes = parser.nodes();
     vex::Sema sema(nodes);
@@ -28,6 +32,8 @@ int main(){
         fmt::print("{}\n", ret);
         std::exit(1);
     }
-    nodes.print();
+    if(print_ast){
+        nodes.print();
+    }
     return 0;
 }
