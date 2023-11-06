@@ -81,7 +81,7 @@ void vex::Lexer::advance(){
 }
 
 void vex::Lexer::skip_whitespace(){
-    while((isblank(_current_c) || _current_c == '\n') && _index < _content.size()-1){
+    while((isblank(_current_c) || _current_c == '\n' || _current_c == '\r') && _index < _content.size()-1){
         advance();
     }
 }
