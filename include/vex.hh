@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <cstdint>
+#include <vector>
+#include <algorithm>
 #include <fmt/core.h>
 
 namespace vex{

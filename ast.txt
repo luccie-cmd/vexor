@@ -5,7 +5,38 @@ AST
     |- NAME: x
     |- VALUE: 69420
 
-_start:
-    mov [x], 69420
+IR
+__root__: (ir function)
+    define_var int x (ir inst = variable decl (x))
+    store x 69420 (ir inst = variable assign)
+    exit 0 (ir inst = standart exit)
 
+ASM
+```
+BITS 64
+segment .text
+
+global _start
+_start:
+    call __root__
+    mov rdi, rax
+    mov rax, 60
+    syscall
+    
+global __root__
+__root__:
+    push rbp
+    mov rbp, rsp
+    
+    ; CODE
+    mov QWORD [x], 69420
+    cmp al, 0
+    jne .ret
+    xor rax, rax
+.ret:
+    ; CLEANUP
+    ret
+
+segment .data
 x: dq 0
+```
