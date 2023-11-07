@@ -188,7 +188,7 @@ if (NOT WIN32)
   target_link_libraries(options INTERFACE m)
 endif()
 
-file(GLOB SOURCES "src/*.cc" "include/*.hh")
+file(GLOB SOURCES "src/*.cc" "src/*/*.cc" "include/*.hh" "include/*/*.hh")
 include_directories(include)
 
 add_executable(vex ${SOURCES})
