@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
-make -B
+cmake -B build
+cmake --build build
+sudo cmake --install build
 
 test_dir="./test"
 
@@ -9,6 +11,6 @@ for file in $test_dir/*.vex
 do
     if [ -f "$file" ]; then
         echo "Compiling $file"
-        ./build/vex "$file" --print-ir
+        ./build/vex "$file"
     fi
 done
