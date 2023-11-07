@@ -5,6 +5,7 @@
 ### Usage
 
 ```
-    make -B
+    cmake -B build
+    cmake --build build
     ./build/vex
 ```
