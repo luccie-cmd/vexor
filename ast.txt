@@ -3,12 +3,12 @@ AST
     |- NAME: x
 |- VAR ASSIGN
     |- NAME: x
-    |- VALUE: 69420
+    |- VALUE: 10
 
 IR
 __root__: (ir function)
     define_var int x (ir inst = variable decl (x))
-    store x 69420 (ir inst = variable assign)
+    store x 10 (ir inst = variable assign)
     exit 0 (ir inst = standart exit)
 
 ASM
@@ -18,26 +18,14 @@ segment .text
 
 global _start
 _start:
-    call __root__
+    ; CODE
+    mov QWORD [x], 10
+
+    ; Call exit procedure
     mov rdi, rax
     mov rax, 60
     syscall
-    
-global __root__
-__root__:
-    push rbp
-    mov rbp, rsp
-    
-    ; CODE
-    mov QWORD [x], 10
-    
-    cmp al, 0
-    jne .ret
-    xor rax, rax
-.ret:
-    ; CLEANUP
-    ret
 
-segment .data
-x: dq 0
+segment .bss
+x: resq 1
 ```

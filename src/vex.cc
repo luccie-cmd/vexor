@@ -8,11 +8,10 @@
 #include "../include/lexer.hh"
 #include "../include/parser.hh"
 #include "../include/sema.hh"
-#include "../include/ir_gen.hh"
+#include "../include/ir.hh"
 #include "../include/codegen/x86_64.hh"
 
 using namespace command_line_options;
-using namespace std::literals;
 
 using options = clopts<
     flag<"--print-ast", "Print the AST">,
@@ -44,7 +43,9 @@ int main(int argc, char** argv){
     if(print_ir){
         ir.print();
     }
-    vex::code_gen::x86_64 cdgx86_64(ir, "./out.txt");
-    cdgx86_64.emit_nasm();
+    vex::MInst minst = ir.lower();
+    minst.emit();
+    // vex::code_gen::x86_64 cdgx86_64(ir, "./out.txt");
+    // cdgx86_64.emit_nasm();
     return 0;
 }

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef VEXOR_LEXER_H
+#define VEXOR_LEXER_H
+
 #include "vex.hh"
 
 namespace vex{
@@ -24,3 +26,5 @@ class Lexer{
 };
 
 };
+
+#endif

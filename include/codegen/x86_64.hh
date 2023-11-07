@@ -1,6 +1,8 @@
-#pragma once
+#ifndef VEXOR_CODEGEN_X86_64_H
+#define VEXOR_CODEGEN_X86_64_H
+
 #include "../vex.hh"
-#include "../ir_gen.hh"
+#include "../ir.hh"
 
 namespace vex{
 namespace code_gen{
@@ -17,3 +19,5 @@ class x86_64{
 
 };
 };
+
+#endif

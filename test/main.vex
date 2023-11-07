@@ -1,2 +1,8 @@
 var x;
 x = 10;
+
+# enum
+#     VAR1
+#     VAR2
+#     VAR3
+# print(enum[0] = VAR1);

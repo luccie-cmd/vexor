@@ -1,4 +1,6 @@
-#pragma once
+#ifndef VEXOR_SEMA_H
+#define VEXOR_SEMA_H
+
 #include "vex.hh"
 #include "ast.hh"
 
@@ -13,3 +15,5 @@ class Sema{
 };
 
 };
+
+#endif

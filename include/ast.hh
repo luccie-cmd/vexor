@@ -1,4 +1,6 @@
-#pragma once
+#ifndef VEXOR_AST_H
+#define VEXOR_AST_H
+
 #include "vex.hh"
 #include <vector>
 
@@ -50,3 +52,5 @@ class Ast{
 };
 
 };
+
+#endif

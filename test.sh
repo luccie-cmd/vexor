@@ -2,7 +2,7 @@
 set -e
 cmake -B build
 cmake --build build
-sudo cmake --install build
+# sudo cmake --install build
 
 test_dir="./test"
 

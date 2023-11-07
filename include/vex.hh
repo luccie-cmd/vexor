@@ -1,4 +1,6 @@
-#pragma once
+#ifndef VEXOR_VEX_H
+#define VEXOR_VEX_H
+
 #include <string>
 #include <cstdint>
 #include <vector>
@@ -43,3 +45,5 @@ class Token{
 };
 
 };
+
+#endif
