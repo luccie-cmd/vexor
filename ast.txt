@@ -30,6 +30,7 @@ __root__:
     
     ; CODE
     mov QWORD [x], 10
+    
     cmp al, 0
     jne .ret
     xor rax, rax

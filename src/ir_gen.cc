@@ -11,10 +11,11 @@ vex::IR vex::IRGen::generate_ir(){
             case vex::AstType::VAR_DECL: {
                 IR ir("define_var", vex::IRType::INST);
                 ir.add_operand(a.operands().at(0));
+                ir.set_bit_width(64);
                 main_ir.add_child(ir);
             } break;
             case vex::AstType::VAR_ASSIGN: {
-                IR ir("store", vex::IRType::INST);
+                IR ir("store_var", vex::IRType::INST);
                 ir.add_operand(a.operands().at(0));
                 ir.add_operand(a.operands().at(1));
                 main_ir.add_child(ir);
