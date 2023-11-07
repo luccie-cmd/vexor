@@ -12,10 +12,7 @@ std::string vex::Sema::check_ast(){
                 return "Cannot have 2 roots (faulty parser)";
             } break;
             case vex::AstType::VAR_ASSIGN: {
-                if(vars.size() == 0){
-                    return  "No variables defined!";
-                }
-                if (std::find(vars.begin(), vars.end(), a.operands().at(0).get_data()) == vars.end()) 
+                if (std::find(vars.begin(), vars.end(), a.operands().at(0).get_data()) == vars.end() || vars.size() == 0) 
                     return fmt::format("Variable `{}` not defined!", a.operands().at(0).get_data());
                 // the 0th element is already checked in the parser ./src/parser.cc:8
                 if(a.operands().at(1).get_type() != vex::TokenType::NUMBER) return "Can only assign number to a variable\n";
