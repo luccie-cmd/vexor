@@ -1,4 +1,4 @@
-#include "parser.hh"
+#include "../include/parser.hh"
 
 vex::Ast vex::Parser::nodes(){
     vex::Ast ret_ast(vex::AstType::ROOT);

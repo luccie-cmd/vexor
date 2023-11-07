@@ -1,4 +1,4 @@
-#include "lexer.hh"
+#include "../include/lexer.hh"
 #include <vector>
 #include <algorithm>
 #include <cctype>

@@ -1,4 +1,4 @@
-#include "sema.hh"
+#include "../include/sema.hh"
 #include <algorithm>
 
 std::string vex::Sema::check_ast(){

@@ -29,7 +29,7 @@ __root__:
     mov rbp, rsp
     
     ; CODE
-    mov QWORD [x], 69420
+    mov QWORD [x], 10
     cmp al, 0
     jne .ret
     xor rax, rax

@@ -3,12 +3,12 @@
 #include <fstream>
 #include <sstream>
 #include <fmt/core.h>
-#include "deps/clopts.hh"
-#include "vex.hh"
-#include "lexer.hh"
-#include "parser.hh"
-#include "sema.hh"
-#include "ir_gen.hh"
+#include "../include/deps/clopts.hh"
+#include "../include/vex.hh"
+#include "../include/lexer.hh"
+#include "../include/parser.hh"
+#include "../include/sema.hh"
+#include "../include/ir_gen.hh"
 
 using namespace command_line_options;
 using namespace std::literals;
@@ -35,11 +35,11 @@ int main(int argc, char** argv){
         fmt::print("{}\n", ret);
         std::exit(1);
     }
-    vex::IRGen irgen(nodes);
-    vex::IR ir = irgen.generate_ir();
     if(print_ast){
         nodes.print();
     }
+    vex::IRGen irgen(nodes);
+    vex::IR ir = irgen.generate_ir();
     if(print_ir){
         ir.print();
     }

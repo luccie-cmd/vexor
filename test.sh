@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+make -B
 
 test_dir="./test"
 

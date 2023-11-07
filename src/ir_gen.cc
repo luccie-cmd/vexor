@@ -1,4 +1,4 @@
-#include "ir_gen.hh"
+#include "../include/ir_gen.hh"
 
 vex::IR vex::IRGen::generate_ir(){
     IR main_ir("__root__", vex::IRType::FUNCTION);
