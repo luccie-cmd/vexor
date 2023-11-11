@@ -1,8 +1,6 @@
-var x;
-x = 10;
+var a = 69;
+var b = 420;
 
-# enum
-#     VAR1
-#     VAR2
-#     VAR3
-# print(enum[0] = VAR1);
+func main(){
+    System.io.out("Hello, World!\n');
+}
