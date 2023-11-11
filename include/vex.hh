@@ -24,7 +24,6 @@ enum struct TokenType{
     CLOSE_PAREN,
     OPEN_CURLY,
     CLOSE_CURLY,
-    DOT,
     TT_EOF,
 };
 
@@ -48,7 +47,6 @@ class Token{
                 case vex::TokenType::CLOSE_PAREN:    return ")";       break;
                 case vex::TokenType::OPEN_CURLY:     return "{";       break;
                 case vex::TokenType::CLOSE_CURLY:    return "}";       break;
-                case vex::TokenType::DOT:            return ".";       break;
                 case vex::TokenType::TT_EOF:         return "EOF";     break;
             }
             return "";

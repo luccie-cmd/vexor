@@ -2,5 +2,5 @@ var a = 69;
 var b = 420;
 
 func main(){
-    System.io.out("Hello, World!\n');
+    write("Hello, World!\n");
 }

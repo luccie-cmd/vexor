@@ -1,0 +1,20 @@
+AST
+VAR DECL
+|- NAME: `a`
+VAR ASSIGN
+|- NAME: `a`
+|- VALUE: `69`
+VAR DECL
+|- NAME: `b`
+VAR ASSIGN
+|- NAME: `b`
+|- VALUE: `420`
+FUNC DECL
+|- NAME: main
+|- ARGS
+|- BODY
+|   AST
+|   FUNC CALL
+|   |- NAME: 
+|   |- ARGS
+|       |- `Hello, World!\n`

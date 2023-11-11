@@ -33,7 +33,7 @@ public:
     void add_child(AstTypes ast);
     std::vector<AstTypes> children();
     AstType get_type() { return _type; }
-    void print();
+    void print(std::string prefix="");
 
 private:
     AstType _type;
@@ -43,6 +43,12 @@ private:
 class AstFuncDecl : public Ast {
 public:
     AstFuncDecl(std::string name) :Ast(AstType::FUNC_DECL), _name(name) {}
+    std::string get_name(){ return _name; }
+    void set_arguments(std::vector<Token> tokens){ _arguments = tokens; }
+    void add_arguments(Token token){ _arguments.push_back(token); }
+    std::vector<Token> get_arguments(){ return _arguments; }
+    void set_body(Ast body){ _body = body; }
+    Ast get_body(){ return _body; }
 private:
     std::string _name;
     std::vector<Token> _arguments;
@@ -51,13 +57,20 @@ private:
 
 class AstFuncCall : public Ast {
 public:
+    AstFuncCall(std::string name) :Ast(AstType::FUNC_CALL), _name(name) {}
+    std::string get_name(){ return _name; }
+    void set_arguments(std::vector<Token> tokens){ _arguments = tokens; }
+    void add_arguments(Token token) { _arguments.push_back(token); }
+    std::vector<Token> get_arguments(){ return _arguments; }
 private:
-    int n;
+    std::string _name;
+    std::vector<Token> _arguments;
 };
 
 class AstVarDecl : public Ast {
 public:
     AstVarDecl(std::string name) :Ast(AstType::VAR_DECL), _name(name) {}
+    std::string get_name(){ return _name; }
 private:
     std::string _name;
 };
@@ -65,6 +78,9 @@ private:
 class AstVarAssign : public Ast {
 public:
     AstVarAssign(std::string name, std::variant<std::string, int> value) :Ast(AstType::VAR_ASSIGN), _name(name), _value(value){}
+    std::string get_name(){ return _name; }
+    std::variant<std::string, int> get_value() { return _value; }
+    void set_value(std::variant<std::string, int> value) { _value = value; }
 private:
     std::string _name;
     std::variant<std::string, int> _value;

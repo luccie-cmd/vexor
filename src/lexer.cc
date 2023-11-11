@@ -14,7 +14,6 @@ static std::vector<vex::Token> single_tokens = {
     vex::Token(vex::TokenType::SEMICOLON, ";"),
     vex::Token(vex::TokenType::PLUS, "+"),
     vex::Token(vex::TokenType::MINUS, "-"),
-    vex::Token(vex::TokenType::DOT, "."),
     vex::Token(vex::TokenType::OPEN_PAREN, "("),
     vex::Token(vex::TokenType::CLOSE_PAREN, ")"),
     vex::Token(vex::TokenType::OPEN_CURLY, "{"),
