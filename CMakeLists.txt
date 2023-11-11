@@ -44,6 +44,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clan
         -Wconversion      # Implicit conversions.
         -Wsign-conversion # Implicit sign conversions.
         -Wformat=2        # Stricter format checking.
+        -Wunused-variable
 
         ## Disabled warnings.
         -Wno-unused-function
