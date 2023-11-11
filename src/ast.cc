@@ -27,7 +27,7 @@ void vex::Ast::print(std::string prefix){
             fmt::print("{}|- NAME: {}\n", prefix, ast.get_name());
             fmt::print("{}|- ARGS\n", prefix);
             for(Token t : ast.get_arguments()){
-                fmt::print("{}        |- `{}`\n", prefix, t.get_data());
+                fmt::print("{}    |- `{}`\n", prefix, t.get_data());
             }
             fmt::print("{}|- BODY\n", prefix);
             ast.get_body().print("|   ");
@@ -38,7 +38,7 @@ void vex::Ast::print(std::string prefix){
                 fmt::print("{}|- NAME: \n", prefix, ast.get_name());
                 fmt::print("{}|- ARGS\n", prefix);
                 for(Token t : ast.get_arguments()){
-                    fmt::print("{}    |- `{}`\n", prefix, t.get_data());
+                    fmt::print("{}   |- `{}`\n", prefix, t.get_data());
                 }
             } catch(std::bad_variant_access){
                 try{

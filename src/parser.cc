@@ -25,13 +25,15 @@ vex::Ast vex::Parser::nodes(bool is_body){
             std::string name = _lexer.expect(TokenType::ID).get_data();
             _lexer.expect(TokenType::OPEN_PAREN);
             Token n = _lexer.next_token();
+            AstFuncDecl ast(name);
             if(n.get_type() != TokenType::CLOSE_PAREN){
-                fmt::print("Unable to handle function arguments for now!\n");
-                std::exit(1);
+                while(n.get_type() != TokenType::CLOSE_PAREN){
+                    ast.add_arguments(n);
+                    n = _lexer.next_token();
+                }
             }
             _lexer.expect(TokenType::OPEN_CURLY);
             Ast body = nodes(true);
-            AstFuncDecl ast(name);
             ast.set_body(body);
             ret_ast.add_child(ast);
             tok = _lexer.next_token();

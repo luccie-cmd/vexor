@@ -17,4 +17,4 @@ FUNC DECL
 |   FUNC CALL
 |   |- NAME: 
 |   |- ARGS
-|       |- `Hello, World!\n`
+|      |- `Hello, World!\n`
