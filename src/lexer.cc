@@ -6,11 +6,19 @@
 
 static std::vector<std::string> keywords = {
     "var",
+    "func",
 };
 
 static std::vector<vex::Token> single_tokens = {
     vex::Token(vex::TokenType::EQUAL, "="),
     vex::Token(vex::TokenType::SEMICOLON, ";"),
+    vex::Token(vex::TokenType::PLUS, "+"),
+    vex::Token(vex::TokenType::MINUS, "-"),
+    vex::Token(vex::TokenType::DOT, "."),
+    vex::Token(vex::TokenType::OPEN_PAREN, "("),
+    vex::Token(vex::TokenType::CLOSE_PAREN, ")"),
+    vex::Token(vex::TokenType::OPEN_CURLY, "{"),
+    vex::Token(vex::TokenType::CLOSE_CURLY, "}"),
 };
 
 vex::Token vex::Lexer::next_token(){
@@ -53,6 +61,23 @@ vex::Token vex::Lexer::next_token(){
             return Token(TokenType::KEYWORD, data);
         }
         return Token(TokenType::ID, data);
+    }
+
+    if(_current_c == '"' || _current_c == *"'"){
+        std::string data;
+        advance();
+        data.push_back(_current_c);
+        while(_current_c != '"' && _current_c != *"'"){
+            advance();
+            data.push_back(_current_c);
+        }
+        advance();
+        data.pop_back();
+        if(data.empty()){
+            fmt::print("Failed to close empty string literal!\n");
+            std::exit(1);
+        }
+        return Token(TokenType::STRING_LITERAL, data);
     }
 
     fmt::print("Invalid character found starting with: `{}`\n", _current_c);

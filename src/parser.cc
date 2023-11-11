@@ -1,43 +1,37 @@
 #include "../include/parser.hh"
 
 vex::Ast vex::Parser::nodes(){
-    vex::Ast ret_ast(vex::AstType::ROOT);
-    vex::Token tok = _lexer.next_token();
-    while(true){
-        if(tok.get_type() == vex::TokenType::KEYWORD){
-            if(tok.get_data() == "var"){
-                vex::Token name = _lexer.expect(vex::TokenType::ID);
-                vex::Ast ast(vex::AstType::VAR_DECL);
-                ast.add_operand(name);
-                ret_ast.add_child(ast);
+    vex::Ast ret_ast(AstType::ROOT);
+
+    Token tok = _lexer.next_token();
+    while(1){
+        while(tok.get_type() == TokenType::KEYWORD && tok.get_data() == "var"){
+            std::string name = _lexer.expect(TokenType::ID).get_data();
+            ret_ast.add_child(AstVarDecl(name));
+            Token n = _lexer.next_token();
+            if(n.get_type() == TokenType::SEMICOLON){
                 tok = _lexer.next_token();
-                if(tok.get_type() == vex::TokenType::EQUAL){
-                    vex::Ast assign(vex::AstType::VAR_ASSIGN);
-                    assign.add_operand(name);
-                    assign.add_operand(_lexer.next_token());
-                    ret_ast.add_child(assign);
-                }
-                if(tok.get_type() != vex::TokenType::SEMICOLON){
-                    fmt::print("Unexpected token with data `{}`\n", tok.get_data());
-                    std::exit(1);
-                }
-            }
-            tok = _lexer.next_token();
-        } else if(tok.get_type() == vex::TokenType::ID){
-            Token next = _lexer.next_token();
-            if(next.get_type() == vex::TokenType::EQUAL){
-                vex::Ast assign(vex::AstType::VAR_ASSIGN);
-                assign.add_operand(tok);
-                assign.add_operand(_lexer.next_token());
-                ret_ast.add_child(assign);
+            } else if(n.get_type() == TokenType::EQUAL){
+                AstVarAssign assign(name, _lexer.next_token().get_data());
             } else{
-                fmt::print("Cannot parse statements / expressions\n");
-                std::exit(1);
+                fmt::println("Unexpected token: `{}`", n.get_data());
             }
-            _lexer.expect(vex::TokenType::SEMICOLON);
+            _lexer.expect(TokenType::SEMICOLON);
             tok = _lexer.next_token();
-        } else{
+        }
+        while(tok.get_type() == TokenType::KEYWORD && tok.get_data() == "func"){
+            fmt::println("Too lazy to support func decl!");
+            while(tok.get_type() != TokenType::CLOSE_CURLY){
+                tok = _lexer.next_token();
+            }
+            tok = _lexer.next_token();
+        }
+        // tok = _lexer.next_token();
+        if(tok.get_type() == TokenType::TT_EOF){
             break;
+        } else{
+            fmt::print("Invalid token: `{}`\n", tok.get_data());
+            std::exit(1);
         }
     }
     return ret_ast;
