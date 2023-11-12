@@ -11,6 +11,6 @@ for file in $test_dir/*.vex
 do
     if [ -f "$file" ]; then
         echo "Compiling $file"
-        ./build/vex "$file" --print-ast
+        ./build/vex "$file"
     fi
 done

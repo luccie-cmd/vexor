@@ -7,6 +7,7 @@
 #include "../include/vex.hh"
 #include "../include/lexer.hh"
 #include "../include/parser.hh"
+#include "../include/sema.hh"
 
 using namespace command_line_options;
 
@@ -24,6 +25,14 @@ int main(int argc, char** argv){
     vex::Parser parser(lexer);
     vex::Ast nodes = parser.nodes();
     if(print_ast){
+        fmt::print("Before SeMa\n");
+        nodes.print();
+    }
+    vex::Sema sema(nodes);
+    sema.check();
+    nodes = sema.optimize();
+    if(print_ast){
+        fmt::print("Before SeMa\n");
         nodes.print();
     }
     return 0;
