@@ -35,7 +35,7 @@ void vex::Ast::print(std::string prefix){
             try{
                 AstFuncCall ast = std::get<AstFuncCall>(a);
                 fmt::print("{}FUNC CALL\n", prefix);
-                fmt::print("{}|- NAME: \n", prefix, ast.get_name());
+                fmt::print("{}|- NAME: {}\n", prefix, ast.get_name());
                 fmt::print("{}|- ARGS\n", prefix);
                 for(Token t : ast.get_arguments()){
                     fmt::print("{}   |- `{}`\n", prefix, t.get_data());

@@ -4,3 +4,5 @@ var b = 420;
 func main(){
     write("Hello, World!\n");
 }
+
+main();

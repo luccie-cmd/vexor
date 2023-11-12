@@ -15,6 +15,9 @@ FUNC DECL
 |- BODY
 |   AST
 |   FUNC CALL
-|   |- NAME: 
+|   |- NAME: write
 |   |- ARGS
 |      |- `Hello, World!\n`
+FUNC CALL
+|- NAME: main
+|- ARGS
