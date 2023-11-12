@@ -10,6 +10,19 @@ static auto lookup_ast_index(int index){
     return index;
 }
 
+void vex::Sema::find_declared_function(std::pair<std::string, int> d){
+    std::string name = d.first;
+    std::string called;
+    for(std::pair<std::string, int> c : declared_func){
+        called = c.first;
+        if(called == name){
+            return;
+        }
+    }
+    fmt::print("No function named: {}\n", name);
+    std::exit(1);
+}
+
 void vex::Sema::check(){
     for(vex::AstTypes ast : _ast.children()){
         switch(lookup_ast_index(ast.index())){
@@ -50,6 +63,9 @@ void vex::Sema::check(){
                 called_funcs.push_back(std::make_pair(std::get<AstFuncCall>(ast).get_name(), std::get<AstFuncCall>(ast).get_arguments().size()));
             } break;
         }
+    }
+    for(std::pair<std::string, int> d : called_funcs){
+        find_declared_function(d);
     }
 }
 vex::Ast vex::Sema::optimize(){

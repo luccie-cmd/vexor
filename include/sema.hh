@@ -9,9 +9,12 @@ namespace vex{
 class Sema{
     public:
         Sema(Ast ast) :_ast(ast) {
-            declared_func.push_back(std::make_pair("write", 1));
+            declared_func = {
+                {"write", 1}
+            };
         }
         void check();
+        void find_declared_function(std::pair<std::string, int> d);
         Ast optimize();
 
     private:
