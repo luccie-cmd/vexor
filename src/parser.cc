@@ -52,6 +52,13 @@ vex::Ast vex::Parser::nodes(bool is_body){
                 }
                 _lexer.expect(TokenType::SEMICOLON);
                 ret_ast.add_child(call);
+                tok = _lexer.next_token();
+            } else if(n.get_type() == TokenType::EQUAL && tok.get_type() == TokenType::ID){
+                // Variable assign
+                AstVarAssign assign(tok.get_data(), _lexer.next_token().get_data());
+                ret_ast.add_child(assign);
+                _lexer.expect(TokenType::SEMICOLON);
+                tok = _lexer.next_token();
             } else{
                 // two checks bc why not
                 if(n.get_type() == TokenType::TT_EOF || (n.get_type() == TokenType::CLOSE_CURLY && is_body)) break;
