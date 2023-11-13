@@ -6,31 +6,31 @@
 #define AST_VAR_DECL 2
 #define AST_VAR_ASSIGN 3
 
-static auto lookup_ast_index(int index){
-    return index;
-}
-
 void vex::Sema::find_declared_function(std::pair<std::string, int> d){
     std::string name = d.first;
+    int arity = d.second;
     std::string called;
+    int called_arity;
     for(std::pair<std::string, int> c : declared_func){
         called = c.first;
-        if(called == name){
+        called_arity = c.second;
+        if(called == name && called_arity == arity){
             return;
         }
     }
-    fmt::print("No function named: {}\n", name);
+    fmt::print("No function named: {} with arity {}\n", name, arity);
     std::exit(1);
 }
 
 void vex::Sema::check(){
     for(vex::AstTypes ast : _ast.children()){
-        switch(lookup_ast_index(ast.index())){
+        switch(ast.index()){
             case AST_VAR_DECL: {
                 if(std::find(declared_vars.begin(), declared_vars.end(), std::get<AstVarDecl>(ast).get_name()) != declared_vars.end()){
                     fmt::print("Redefinition of already declared function `{}`\n", std::get<AstVarDecl>(ast).get_name());
                     std::exit(1);
                 }
+
                 declared_vars.push_back(std::get<AstVarDecl>(ast).get_name());
             } break;
             case AST_VAR_ASSIGN: {
